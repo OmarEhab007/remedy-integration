@@ -45,7 +45,7 @@ public class CreateIncidentController {
     }
 
     /**
-     * Creates incident in BMC Remedy system from SolarWinds alert data
+     * Creates incident in BMC Remedy system from monitoring tool alert data
      * 
      * API Contract from original system:
      * - URL: POST /api/remedyITSM/createIncident
@@ -53,7 +53,7 @@ public class CreateIncidentController {
      * - Authentication: key field must equal "10"
      * - Response: "Success", "Failed", or error message
      * 
-     * @param incidentDetails The incident details from SolarWinds
+     * @param incidentDetails The incident details from monitoring tool
      * @return ResponseEntity with success/failure message
      */
     @PostMapping(value = "/createIncident", produces = "application/json")

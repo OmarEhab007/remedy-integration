@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
  * Key Features:
  * - BMC AR System API integration using arAPI 91.9
  * - Automated login to Remedy server
- * - Creates incidents in INTG-ITSM-SOLARWIND-INCIDENT-CREATE-STAGING-FORM
- * - Field mapping from SolarWinds alerts to Remedy incident fields
+ * - Creates incidents in INTG-ITSM-MONITORING-INCIDENT-CREATE-STAGING-FORM
+ * - Field mapping from monitoring tool alerts to Remedy incident fields
  * 
  * BMC Remedy Field Mappings:
  * - Field ID 536870943: sourceOfCreation
@@ -47,9 +47,9 @@ public class CreateIncidentService {
     String port = null;
 
     /**
-     * Creates incident in BMC Remedy from SolarWinds incident details
+     * Creates incident in BMC Remedy from monitoring tool incident details
      * 
-     * @param incidentDetails Incident data from SolarWinds
+     * @param incidentDetails Incident data from monitoring tool
      * @return Generated incident ID or empty string if failed
      */
     public String createIncident(IncidentDetails incidentDetails) {
@@ -119,14 +119,14 @@ public class CreateIncidentService {
 
     /**
      * Creates incident entry in BMC Remedy staging form
-     * Maps SolarWinds incident fields to BMC Remedy form fields
+     * Maps monitoring tool incident fields to BMC Remedy form fields
      * 
      * @param arServerUser Authenticated AR Server user
-     * @param incidentDetails Incident details from SolarWinds
+     * @param incidentDetails Incident details from monitoring tool
      * @return Generated incident ID or empty string if failed
      */
     public String createInBoundEntry(ARServerUser arServerUser, IncidentDetails incidentDetails) {
-        logger.info("******create Solar winds Entry starts************************");
+        logger.info("******create Monitoring Entry starts************************");
         String generatedID = "";
         
         try {
@@ -142,9 +142,9 @@ public class CreateIncidentService {
             coreValues.put(Integer.valueOf(536870918), new Value(incidentDetails.getAdd2()));
             
             // Create entry in BMC Remedy staging form
-            generatedID = arServerUser.createEntry("INTG-ITSM-SOLARWIND-INCIDENT-CREATE-STAGING-FORM", coreValues);
+            generatedID = arServerUser.createEntry("INTG-ITSM-MONITORING-INCIDENT-CREATE-STAGING-FORM", coreValues);
             
-            logger.info("******create Solar Winds Entry End s************************");
+            logger.info("******create Monitoring Entry Ends************************");
             
         } catch (Exception var9) {
             logger.error("Exception..." + var9);

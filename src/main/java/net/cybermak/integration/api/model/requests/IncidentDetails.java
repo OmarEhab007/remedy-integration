@@ -1,8 +1,8 @@
 package net.cybermak.integration.api.model.requests;
 
 /**
- * IncidentDetails DTO for SolarWinds to BMC Remedy integration
- * Represents incident data from SolarWinds monitoring system
+ * IncidentDetails DTO for monitoring tool to BMC Remedy integration
+ * Represents incident data from monitoring system
  * 
  * Recreated from original compiled WAR file to maintain API compatibility
  * 

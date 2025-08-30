@@ -21,7 +21,7 @@ logging:
     net.cybermak.integration: DEBUG
     org.springframework: INFO
   file:
-    name: "E:/Program Files/BMC Software/Integrations/Logs/solarWinds/dev/remedy-integration-dev.log"
+    name: "E:/Program Files/BMC Software/Integrations/Logs/monitoring/dev/remedy-integration-dev.log"
 
 # Legacy compatibility
 serverName: itsmAppDev

@@ -10,10 +10,10 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
- * ReadProperties - Singleton configuration manager for SolarWinds integration
- * Loads configuration from solarWinds.properties file
+ * ReadProperties - Singleton configuration manager for monitoring tool integration
+ * Loads configuration from remedy.properties file
  * 
- * Original properties file location: E:\Program Files\BMC Software\Integrations\solarWinds\solarWinds.properties
+ * Original properties file location: E:\Program Files\BMC Software\Integrations\monitoring\remedy.properties
  * Contains server connection details for BMC Remedy integration
  * 
  * Recreated from original compiled WAR file to maintain compatibility
@@ -45,7 +45,7 @@ public class ReadProperties {
         
         try {
             // Try original hardcoded path first for backward compatibility
-            String filePath = "E:\\Program Files\\BMC Software\\Integrations\\solarWinds\\solarWinds.properties";
+            String filePath = "E:\\Program Files\\BMC Software\\Integrations\\monitoring\\remedy.properties";
             InputStream file = null;
             
             try {
@@ -53,7 +53,7 @@ public class ReadProperties {
             } catch (IOException e) {
                 // Fallback to classpath for Spring Boot compatibility
                 logger.warn("Cannot load from original path, trying classpath: " + e.getMessage());
-                file = getClass().getClassLoader().getResourceAsStream("solarWinds.properties");
+                file = getClass().getClassLoader().getResourceAsStream("remedy.properties");
                 if (file == null) {
                     file = getClass().getClassLoader().getResourceAsStream("remedy.properties");
                 }

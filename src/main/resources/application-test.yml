@@ -21,7 +21,7 @@ logging:
     net.cybermak.integration: INFO
     org.springframework: WARN
   file:
-    name: "E:/Program Files/BMC Software/Integrations/Logs/solarWinds/test/remedy-integration-test.log"
+    name: "E:/Program Files/BMC Software/Integrations/Logs/monitoring/test/remedy-integration-test.log"
 
 # Legacy compatibility
 serverName: csapptst1

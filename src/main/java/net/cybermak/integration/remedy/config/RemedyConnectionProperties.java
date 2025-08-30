@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * Configuration properties for BMC Remedy connections
- * Based on original solarWinds.properties from WEB-INF/classes/
+ * Based on original remedy.properties configuration
  */
 @Configuration
 @ConfigurationProperties(prefix = "remedy")

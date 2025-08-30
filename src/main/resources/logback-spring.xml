@@ -4,15 +4,15 @@
     
     <!-- Spring profiles support -->
     <springProfile name="dev">
-        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/solarWinds/dev" />
+        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/monitoring/dev" />
     </springProfile>
     
     <springProfile name="test">
-        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/solarWinds/test" />
+        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/monitoring/test" />
     </springProfile>
     
     <springProfile name="prod">
-        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/solarWinds/prod" />
+        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/monitoring/prod" />
     </springProfile>
     
     <!-- Default log path for other environments -->

@@ -22,7 +22,7 @@ logging:
     org.springframework: ERROR
     org.apache.catalina: ERROR
   file:
-    name: "E:/Program Files/BMC Software/Integrations/Logs/solarWinds/prod/remedy-integration-prod.log"
+    name: "E:/Program Files/BMC Software/Integrations/Logs/monitoring/prod/remedy-integration-prod.log"
 
 # Legacy compatibility
 serverName: ${REMEDY_SERVER:csappprd1}
