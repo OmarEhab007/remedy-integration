@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Based on original logback.xml from WEB-INF/classes/ -->
+    
+    <!-- Spring profiles support -->
+    <springProfile name="dev">
+        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/solarWinds/dev" />
+    </springProfile>
+    
+    <springProfile name="test">
+        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/solarWinds/test" />
+    </springProfile>
+    
+    <springProfile name="prod">
+        <property name="LOG_PATH" value="E:/Program Files/BMC Software/Integrations/Logs/solarWinds/prod" />
+    </springProfile>
+    
+    <!-- Default log path for other environments -->
+    <springProfile name="!dev,!test,!prod">
+        <property name="LOG_PATH" value="./logs" />
+    </springProfile>
+    
+    <!-- Generic log file name - can be overridden by modules -->
+    <property name="LOG_FILE_NAME" value="remedy-integration" />
+
+    <!-- Console logging pattern - enhanced for Spring Boot -->
+    <appender name="ConsoleOutput" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %white(%d{ISO8601}) %highlight(%-5level) [%yellow(%t)] %cyan(%logger{36}) : %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+
+    <!-- File logging appender - maintains original patterns -->
+    <appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} : %msg%n</Pattern>
+        </encoder>
+
+        <!-- Rolling policy - daily and 10MB size based (same as original) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archived/${LOG_FILE_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- Keep logs for 30 days -->
+            <maxHistory>30</maxHistory>
+            <!-- Total log size cap -->
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Module-specific logging appenders -->
+    
+    <!-- Incident module logging -->
+    <appender name="IncidentLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/incident/createIncident.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level : %msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/incident/archived/createIncident-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- BMC Remedy API logging -->
+    <appender name="RemedyApiLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/remedy-api.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} : %msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archived/remedy-api-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Root logger configuration -->
+    <root level="INFO">
+        <appender-ref ref="LogFile" />
+        <appender-ref ref="ConsoleOutput" />
+    </root>
+
+    <!-- Application-specific logging -->
+    <logger name="net.cybermak.integration" level="TRACE" additivity="false">
+        <appender-ref ref="LogFile" />
+        <appender-ref ref="ConsoleOutput" />
+    </logger>
+
+    <!-- Module-specific loggers -->
+    <logger name="net.cybermak.integration.modules.incident" level="TRACE" additivity="false">
+        <appender-ref ref="IncidentLogFile" />
+        <appender-ref ref="ConsoleOutput" />
+    </logger>
+
+    <!-- BMC Remedy API logging -->
+    <logger name="net.cybermak.integration.remedy" level="DEBUG" additivity="false">
+        <appender-ref ref="RemedyApiLogFile" />
+        <appender-ref ref="ConsoleOutput" />
+    </logger>
+
+    <!-- Spring framework logging -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="LogFile" />
+        <appender-ref ref="ConsoleOutput" />
+    </logger>
+
+    <!-- Legacy compatibility logger (from original com.log pattern) -->
+    <logger name="com.log" level="TRACE" additivity="false">
+        <appender-ref ref="LogFile" />
+        <appender-ref ref="ConsoleOutput" />
+    </logger>
+
+    <!-- Environment-specific logging levels -->
+    <springProfile name="dev">
+        <logger name="net.cybermak.integration" level="DEBUG" />
+    </springProfile>
+    
+    <springProfile name="test">
+        <logger name="net.cybermak.integration" level="INFO" />
+    </springProfile>
+    
+    <springProfile name="prod">
+        <logger name="net.cybermak.integration" level="WARN" />
+        <logger name="org.springframework" level="WARN" />
+    </springProfile>
+    
+</configuration>

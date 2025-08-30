@@ -1,0 +1,27 @@
+# Development environment configuration
+# Note: This file is activated when 'dev' profile is active
+
+# Development server settings  
+server:
+  port: 8080
+
+# Development Remedy configuration
+remedy:
+  server-name: itsmAppDev
+  username: itsmAppDev
+  password: itsmAppDev
+  port: 6000
+  connection:
+    pool-size: 5
+    timeout: 30000
+    
+# Development logging
+logging:
+  level:
+    net.cybermak.integration: DEBUG
+    org.springframework: INFO
+  file:
+    name: "E:/Program Files/BMC Software/Integrations/Logs/solarWinds/dev/remedy-integration-dev.log"
+
+# Legacy compatibility
+serverName: itsmAppDev

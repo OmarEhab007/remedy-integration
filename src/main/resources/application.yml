@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: Remedy Integration Platform
+  main:
+    banner-mode: console
+  profiles:
+    active: dev
+  # Configuration properties
+  config:
+    import:
+      - "classpath:remedy.properties"
+  # Legacy compatibility
+  jpa:
+    open-in-view: false
+
+server:
+  port: 8080
+  # Support for WAR deployment
+  servlet:
+    context-path: /
+    
+# Management endpoints (same as original actuator settings)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers
+  endpoint:
+    health:
+      show-details: when-authorized
+    loggers:
+      enabled: true
+
+# Logging configuration (merged from original application.properties)
+logging:
+  level:
+    # Original settings from WEB-INF/classes/application.properties
+    org.springframework: INFO  
+    net.cybermak.integration: TRACE
+    # Additional Spring Boot 3.x settings
+    org.apache.catalina: WARN
+    org.springframework.web: INFO
+  # Original file logging settings
+  file:
+    name: "E:/Program Files/BMC Software/Integrations/NetBeansProjects/Logs/BSS/consumer.log"
+  pattern:
+    file: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+
+# Legacy compatibility settings
+serverName: csapptst1
+
+# Security configuration
+security:
+  basic:
+    enabled: true
+  # API Key configuration for legacy endpoint
+  api-key:
+    legacy-key: ${LEGACY_API_KEY:10}
+    enabled: true
+  # JWT configuration for modern authentication
+  jwt:
+    secret: ${JWT_SECRET:defaultSecretKey}
+    expiration: 86400000

@@ -1,0 +1,27 @@
+# Test environment configuration
+# Note: This file is activated when 'test' profile is active
+
+# Test server settings
+server:
+  port: 8080
+
+# Test Remedy configuration
+remedy:
+  server-name: csapptst1
+  username: itsmAppTest
+  password: itsmAppTest
+  port: 6000
+  connection:
+    pool-size: 3
+    timeout: 20000
+    
+# Test logging - reduced verbosity
+logging:
+  level:
+    net.cybermak.integration: INFO
+    org.springframework: WARN
+  file:
+    name: "E:/Program Files/BMC Software/Integrations/Logs/solarWinds/test/remedy-integration-test.log"
+
+# Legacy compatibility
+serverName: csapptst1

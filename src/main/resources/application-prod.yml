@@ -1,0 +1,34 @@
+# Production environment configuration
+# Note: This file is activated when 'prod' profile is active
+
+# Production server settings
+server:
+  port: 8080
+
+# Production Remedy configuration  
+remedy:
+  server-name: ${REMEDY_SERVER:csappprd1}
+  username: ${REMEDY_USER:itsmAppProd}
+  password: ${REMEDY_PASSWORD}
+  port: ${REMEDY_PORT:6000}
+  connection:
+    pool-size: 10
+    timeout: 60000
+    
+# Production logging - minimal verbosity
+logging:
+  level:
+    net.cybermak.integration: WARN
+    org.springframework: ERROR
+    org.apache.catalina: ERROR
+  file:
+    name: "E:/Program Files/BMC Software/Integrations/Logs/solarWinds/prod/remedy-integration-prod.log"
+
+# Legacy compatibility
+serverName: ${REMEDY_SERVER:csappprd1}
+
+# Production security
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: 3600000

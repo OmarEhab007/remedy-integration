@@ -1,0 +1,55 @@
+# BMC Remedy Connection Configuration Template
+# Copy this file to remedy.properties and update with your actual values
+
+# BMC Remedy Server Configuration
+remedy.connection.server-name=YOUR_SERVER_NAME
+remedy.connection.username=YOUR_USERNAME
+remedy.connection.password=YOUR_PASSWORD
+remedy.connection.port=6000
+
+# Environment-specific server configurations
+remedy.servers.dev.name=YOUR_DEV_SERVER
+remedy.servers.dev.username=YOUR_DEV_USERNAME
+remedy.servers.dev.password=YOUR_DEV_PASSWORD
+remedy.servers.dev.port=6000
+
+remedy.servers.test.name=YOUR_TEST_SERVER
+remedy.servers.test.username=YOUR_TEST_USERNAME
+remedy.servers.test.password=YOUR_TEST_PASSWORD
+remedy.servers.test.port=6000
+
+remedy.servers.prod.name=YOUR_PROD_SERVER
+remedy.servers.prod.username=YOUR_PROD_USERNAME
+remedy.servers.prod.password=YOUR_PROD_PASSWORD
+remedy.servers.prod.port=6000
+
+# Connection Pool Settings
+remedy.connection.pool.max-size=10
+remedy.connection.pool.min-idle=2
+remedy.connection.pool.max-wait-time=30000
+remedy.connection.pool.validation-timeout=5000
+
+# Retry Configuration
+remedy.connection.retry.max-attempts=3
+remedy.connection.retry.delay=1000
+
+# Form Configuration
+remedy.forms.incident=HPD:Help Desk
+remedy.forms.workorder=WOI:WorkOrder
+remedy.forms.change=CHG:Change
+
+# Field Mapping Configuration
+remedy.fields.incident.summary=Short_Description
+remedy.fields.incident.description=Detailed_Decription
+remedy.fields.incident.priority=Priority
+remedy.fields.incident.status=Status
+remedy.fields.incident.submitter=Submitter
+remedy.fields.incident.impact=Impact
+remedy.fields.incident.urgency=Urgency
+
+# Legacy Compatibility
+# Original property names for backward compatibility
+serverName=${remedy.connection.server-name}
+userName=${remedy.connection.username}
+userPassword=${remedy.connection.password}
+port=${remedy.connection.port}

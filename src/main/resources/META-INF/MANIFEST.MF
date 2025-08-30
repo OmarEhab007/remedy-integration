@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven 3.9.0
+Built-By: remedy-integration-platform
+Build-Jdk: 17.0.8
+Implementation-Title: Remedy Integration Platform
+Implementation-Version: 1.0.0-SNAPSHOT
+Implementation-Vendor-Id: net.cybermak.integration
+Implementation-URL: https://github.com/cybermak/remedy-integration-platform
+Main-Class: org.springframework.boot.loader.WarLauncher
+Start-Class: net.cybermak.integration.SpringRestApplication
+Spring-Boot-Version: 3.2.0
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
